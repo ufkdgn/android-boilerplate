@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 
 public class ApplicationPreferences {
@@ -31,6 +32,11 @@ public class ApplicationPreferences {
             Log.e(TAG, "getVersionBuildNumber: exception occured", e);
         }
         return "";
+    }
+
+    public static String getDeviceId(Context context) {
+        String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return deviceId;
     }
 
     public static String getDefaultApiUrl(Context context) {

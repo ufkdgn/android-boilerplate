@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
@@ -31,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
             runnable.run();
             runnable = this.backgroundOperationQueue.dequeueOperation();
         }
+        this.setContentView();
     }
 
     @Override
@@ -44,5 +46,9 @@ public class BaseActivity extends AppCompatActivity {
 
     public boolean isRunning() {
         return getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED);
+    }
+
+    @CallSuper
+    public void setContentView() {
     }
 }
